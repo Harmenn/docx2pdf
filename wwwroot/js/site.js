@@ -76,6 +76,7 @@
 
     function setValidation(message) {
       errorOutput.textContent = message || '';
+      input.setAttribute('aria-invalid', message ? 'true' : 'false');
       input.classList.toggle('is-invalid', Boolean(message));
     }
 
@@ -108,7 +109,9 @@
 
     function updateCreditSlider(credits) {
       const quote = getQuote(credits);
+      const progress = ((Number(quote.sliderPosition) - sliderMin) / Math.max(1, sliderMax - sliderMin)) * 100;
       slider.value = String(quote.sliderPosition);
+      slider.style.setProperty('--slider-progress', `${progress}%`);
       input.value = numberNl.format(credits);
       countOutput.textContent = numberNl.format(credits);
       countMetaOutput.textContent = numberNl.format(credits);

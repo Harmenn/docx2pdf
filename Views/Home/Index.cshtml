@@ -3,9 +3,9 @@
 @model Docx2Pdf.Models.ViewModels.HomeViewModel
 @{
     var nl = new CultureInfo("nl-NL");
-    ViewData["Title"] = "DOCX naar PDF API";
-    ViewData["MetaTitle"] = "DOCX naar PDF API met credits en accountflow | Docx2Pdf";
-    ViewData["MetaDescription"] = "Zet DOCX om naar PDF via een duidelijke creditflow, accountomgeving en joboverzicht. Gemaakt voor teams die documentconversie willen aanbieden zonder onnodige rompslomp.";
+    ViewData["Title"] = "DOCX naar PDF";
+    ViewData["MetaTitle"] = "DOCX naar PDF zonder seat licenses of enterprise gedoe | Docx2Pdf";
+    ViewData["MetaDescription"] = "DOCX naar PDF moet simpel zijn. Geen seat licenses, geen enterprise calls, geen eindeloos uitgezoek. Upload je DOCX en regel conversies via een heldere flow met spotgoedkope credits.";
     var pricing = Model.Pricing;
 }
 
@@ -13,20 +13,20 @@
     <div class="container py-5">
         <div class="row align-items-start g-4">
             <div class="col-12 col-lg-6 reveal">
-                <div class="eyebrow">Documentconversie zonder onduidelijke pricing of losse tools</div>
-                <h1 class="display-5 fw-bold hero-title">DOCX naar PDF met account, credits en een duidelijke conversieflow</h1>
-                <p class="lead text-muted mt-3">Voor teams die documentconversie als dienst willen aanbieden. Upload een DOCX-bestand, volg de jobstatus, reken af per credit en beheer alles vanuit één accountomgeving.</p>
+                <div class="eyebrow">Hoe kan iets simpels als DOCX naar PDF zo ingewikkeld gemaakt worden?</div>
+                <h1 class="display-5 fw-bold hero-title">Zet DOCX om naar PDF zonder seat licenses, enterprise sales of ander gezeik</h1>
+                <p class="lead text-muted mt-3">Andere aanbieders maken van een simpele conversie een licensing-puzzel. Hier hoort het simpel te zijn: DOCX erin, PDF eruit, en een helder creditmodel zonder gedoe.</p>
                 <div class="credit-logic-list hero-quick-facts mt-4">
-                    <div>1 uploadflow voor DOCX naar PDF</div>
-                    <div>1 credit per succesvolle conversie</div>
-                    <div>Credits, betalingen en jobhistorie in hetzelfde product</div>
+                    <div>Geen seat-based licenties of teamformules</div>
+                    <div>Spotgoedkope credits in plaats van langdurig contractgedoe</div>
+                    <div>Upload, status en jobhistorie in dezelfde flow</div>
                 </div>
                 <div class="hero-ctas d-flex flex-column flex-sm-row gap-2 mt-4">
-                    <a class="btn btn-primary btn-lg btn-premium" asp-area="Identity" asp-page="/Account/Register">Maak account en test de flow</a>
+                    <a class="btn btn-primary btn-lg btn-premium" asp-area="Identity" asp-page="/Account/Register">Start en test de flow</a>
                     <a class="btn btn-outline-secondary btn-lg btn-premium-link" asp-controller="Convert" asp-action="Index">Bekijk de converter</a>
                 </div>
                 <div class="hero-secondary-links mt-3">
-                    <a class="link-muted fw-semibold" href="#how-it-works">Bekijk hoe het werkt</a>
+                    <a class="link-muted fw-semibold" href="#credits">Bekijk hoe goedkoop credits zijn</a>
                 </div>
             </div>
             <div class="col-12 col-lg-6 reveal">
@@ -36,7 +36,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
                             </div>
-                            <span class="pill">Voorbeeld jobstatus</span>
+                            <span class="pill">Eenvoudige conversieflow</span>
                         </div>
                         <div class="codebox codebox-response mt-3">
 <pre class="m-0"><code>{
@@ -48,7 +48,7 @@
 }</code></pre>
                         </div>
                         <div class="mt-4 small text-muted">
-                            De flow voor account, credits, jobs en downloads staat. De daadwerkelijke conversie-engine is nog het open onderdeel.
+                            De productflow is opgezet rond eenvoud. De daadwerkelijke conversie-engine is nog het open onderdeel in deze build.
                         </div>
                     </div>
                 </div>
@@ -60,13 +60,28 @@
 <section class="section section-soft" id="developer-fit">
     <div class="container py-5">
         <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Waarom teams hiervoor kiezen</h2>
-            <p class="text-muted mb-0">Niet omdat het mooi klinkt, maar omdat het operationele gedoe rondom documentconversie snel onnodig groot wordt.</p>
+            <h2 class="h1 fw-bold mb-2">Waarom dit aantrekkelijk is</h2>
+            <p class="text-muted mb-0">Omdat documentconversie meestal onnodig ingewikkeld, duur en traag wordt gemaakt.</p>
         </div>
         <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Duidelijke afrekening</div><div class="article-card-excerpt">Geen vage offerteflow. Je ziet direct hoeveel credits je koopt en wat een conversie kost.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Minder handwerk</div><div class="article-card-excerpt">Gebruikers, betalingen, uploads, statussen en downloads zitten in dezelfde flow in plaats van verspreid over losse tools.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Beter overzicht</div><div class="article-card-excerpt">Accounts zien hun eigen jobs en credits terug. Beheer kan users en volume centraal volgen.</div></article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Geen licentie-ellende</div>
+                    <div class="article-card-excerpt">Geen gedoe met seats, teamgroottes, perpetual licenses of ondoorzichtige enterprise modellen.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Heldere prijs per conversie</div>
+                    <div class="article-card-excerpt">Je ziet direct wat credits kosten en hoe je volumeprijs omlaag gaat. Geen verborgen saleslaag ertussen.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Simpeler voor gebruikers</div>
+                    <div class="article-card-excerpt">Upload, status en download zitten op één plek in plaats van verspreid over losse tools en handmatige processen.</div>
+                </div>
+            </article>
         </div>
     </div>
 </section>
@@ -74,18 +89,48 @@
 <section class="section" id="what-you-get">
     <div class="container py-5">
         <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Wat er nu in het product zit</h2>
-            <p class="text-muted mb-0">Alleen functies die daadwerkelijk in deze build aanwezig zijn.</p>
+            <h2 class="h1 fw-bold mb-2">Wat je nu al krijgt</h2>
+            <p class="text-muted mb-0">Alles hieronder zit al in de huidige productflow.</p>
         </div>
         <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Accountomgeving</div><div class="article-card-excerpt">Registreren, inloggen, creditsaldo bekijken en recente conversies terugzien in je eigen account.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Credits en betalingen</div><div class="article-card-excerpt">Credits kopen via Mollie, betaalstatus volgen en facturen terugvinden vanuit dezelfde flow.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Upload en jobtracking</div><div class="article-card-excerpt">DOCX-bestanden uploaden, status van jobs volgen en outputbestanden klaarmaken voor download.</div></article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Upload en jobtracking</div>
+                    <div class="article-card-excerpt">DOCX-bestanden uploaden, jobstatus volgen en outputbestanden klaarzetten voor download.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Credits en betalingen</div>
+                    <div class="article-card-excerpt">Credits kopen via Mollie, betaalstatus volgen en facturen terugvinden vanuit dezelfde flow.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Accountomgeving</div>
+                    <div class="article-card-excerpt">Registreren, inloggen, creditsaldo bekijken en recente conversies terugzien in je eigen account.</div>
+                </div>
+            </article>
         </div>
         <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Adminbeheer</div><div class="article-card-excerpt">Users bekijken, credits ophogen en recente jobs en betalingen controleren vanuit één adminpagina.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Volume-structuur</div><div class="article-card-excerpt">Een staffelmodel voor credits is aanwezig, zodat je prijs per conversie direct kunt sturen.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Jobhistorie per gebruiker</div><div class="article-card-excerpt">Niet alleen converteren, maar ook terugzien wat eerder is geüpload en wat de status daarvan was.</div></article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Adminbeheer</div>
+                    <div class="article-card-excerpt">Users bekijken, credits ophogen en recente jobs en betalingen controleren vanuit één adminpagina.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Goedkope volumeprijzen</div>
+                    <div class="article-card-excerpt">Een staffelmodel voor credits is aanwezig, zodat je prijs per conversie laag en voorspelbaar blijft.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Jobhistorie per gebruiker</div>
+                    <div class="article-card-excerpt">Niet alleen converteren, maar ook terugzien wat eerder is geüpload en wat de status daarvan was.</div>
+                </div>
+            </article>
         </div>
     </div>
 </section>
@@ -94,7 +139,7 @@
     <div class="container py-5">
         <div class="section-head section-head-centered reveal">
             <h2 class="h1 fw-bold mb-2">Hoe de flow werkt</h2>
-            <p class="text-muted mb-0">Dit is wat een gebruiker of klant logisch doorloopt.</p>
+            <p class="text-muted mb-0">Simpel hoort ook echt simpel te voelen.</p>
         </div>
         <ol class="steps steps-flow mt-4">
             <li class="reveal">
@@ -102,7 +147,7 @@
                 <div class="step-copy">
                     <span class="step-kicker">Stap 1</span>
                     <strong>Maak een account en koop credits</strong>
-                    <span>Gebruikers starten met een account en zien direct welk volume ze nodig hebben.</span>
+                    <span>Geen offertegesprekken of licentie-uitzoekwerk. Je kiest gewoon het volume dat past.</span>
                 </div>
             </li>
             <li class="step-connector reveal" aria-hidden="true"><span>&rarr;</span></li>
@@ -111,7 +156,7 @@
                 <div class="step-copy">
                     <span class="step-kicker">Stap 2</span>
                     <strong>Upload een DOCX-bestand</strong>
-                    <span>Het bestand komt in een conversiejob terecht, zodat status, foutafhandeling en download logisch op één plek zitten.</span>
+                    <span>Het bestand komt in een conversiejob terecht, zodat status, foutafhandeling en download logisch op één plek blijven.</span>
                 </div>
             </li>
             <li class="step-connector reveal" aria-hidden="true"><span>&rarr;</span></li>
@@ -131,7 +176,12 @@
     <div class="container py-5">
         <div class="section-head section-head-centered reveal">
             <h2 class="h1 fw-bold mb-2">Credits voor conversies</h2>
-            <p class="text-muted mb-0">Heldere volumeprijzen helpen prospects sneller beslissen dan een onzichtbare sales- of offerteflow.</p>
+            <p class="text-muted mb-0">Spotgoedkope credits werken vaak beter dan seat pricing, contractsjablonen en ellenlange offertetrajecten.</p>
+        </div>
+        <div class="credit-logic-list mt-3 reveal" aria-label="Uitleg over credits">
+            <div>1 conversie = 1 credit</div>
+            <div>Geen seats, geen teamlicenties en geen contractgedoe</div>
+            <div>Vanaf @pricing.LowestUnitPriceExVat.ToString("C", nl) per credit excl. btw</div>
         </div>
 
         <div class="credit-slider-shell mt-3 reveal"
@@ -157,13 +207,19 @@
                         </div>
                         <div class="credit-control-inputs">
                             <div class="credit-slider-wrap">
-                                <input id="creditVolume" class="credit-slider-input" type="range" min="@pricing.Slider.SliderMinCredits" max="@pricing.Slider.SliderMaxPosition" step="1" value="@pricing.Slider.SliderDefaultPosition" />
+                                <input id="creditVolume" class="credit-slider-input" type="range" min="@pricing.Slider.SliderMinCredits" max="@pricing.Slider.SliderMaxPosition" step="1" value="@pricing.Slider.SliderDefaultPosition" aria-describedby="creditVolumeError" />
+                                <div class="credit-slider-ticks" aria-hidden="true">
+                                    <span class="tick-label tick-label-start" style="--tick-ratio:0;">100</span>
+                                    <span class="tick-label tick-label-mid" style="--tick-ratio:0.25;">250</span>
+                                    <span class="tick-label tick-label-end" style="--tick-ratio:1;">1.000</span>
+                                </div>
                             </div>
                             <div class="credit-input-wrap">
-                                <input id="creditVolumeInput" class="credit-number-input" type="text" inputmode="numeric" value="@pricing.Slider.DefaultCredits.ToString("N0", nl)" />
+                                <input id="creditVolumeInput" class="credit-number-input" type="text" inputmode="numeric" autocomplete="off" value="@pricing.Slider.DefaultCredits.ToString("N0", nl)" aria-describedby="creditVolumeError" aria-invalid="false" />
                                 <span class="credit-input-unit">credits</span>
                             </div>
                         </div>
+                        <div class="credit-presets-head">Veelgekozen volumes</div>
                         <div class="credit-presets">
                             <button class="credit-preset" type="button" data-credit-preset="100"><span class="credit-preset-copy"><span class="credit-preset-value">100 credits</span><span class="credit-preset-meta">testbatch</span></span></button>
                             <button class="credit-preset is-active is-recommended" type="button" data-credit-preset="250"><span class="credit-preset-copy"><span class="credit-preset-value">250 credits</span><span class="credit-preset-meta">startpakket</span></span><span class="credit-preset-badge">Aanbevolen</span></button>
@@ -173,14 +229,15 @@
                     </div>
                 </div>
 
-                <div class="price pricing-card pricing-card-static price-slider-card reveal">
+                <div class="price pricing-card pricing-card-static price-slider-card reveal" tabindex="0">
                     <div class="price-top">
-                        <div><div class="price-name">Directe prijs</div><div class="price-sub">Gebruik dit als uitgangspunt voor je creditmodel</div></div>
+                        <div><div class="price-name">Directe prijs</div><div class="price-sub">Geen seats, geen teamstaffels, gewoon een helder creditmodel</div></div>
                         <div class="volume-discount-badge"><span id="creditSliderDiscount">@pricing.DefaultQuote.DiscountPercent</span>% korting</div>
                     </div>
                     <div class="price-value" id="creditSliderSubtotal">@pricing.DefaultQuote.SubtotalExVat.ToString("C", nl)</div>
                     <div class="price-sub"><span id="creditSliderCount">@pricing.Slider.DefaultCredits.ToString("N0", nl)</span> credits geselecteerd</div>
                     <div class="price-per-credit"><strong id="creditSliderUnit">@pricing.DefaultQuote.UnitPriceExVat.ToString("C", nl)</strong> per credit excl. btw</div>
+                    <div class="price-summary-note">Eenmalige aankoop, direct inzetbaar in je account</div>
                     <div class="price-meta">
                         <div class="price-meta-row"><span class="k">Aantal credits</span><span class="v" id="creditSliderCountMeta">@pricing.Slider.DefaultCredits.ToString("N0", nl)</span></div>
                         <div class="price-meta-row"><span class="k">Prijs per credit</span><span class="v" id="creditSliderUnitMeta">@pricing.DefaultQuote.UnitPriceExVat.ToString("C", nl)</span></div>
@@ -204,9 +261,24 @@
             <p class="text-muted mb-0">De homepage moet eerlijk blijven over wat deze build nu wel en niet kan.</p>
         </div>
         <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">De daadwerkelijke omzetting</div><div class="article-card-excerpt">De conversie-engine achter de jobflow is nog niet actief. Daardoor is de gebruikersflow wel zichtbaar, maar de uiteindelijke omzetting nog niet live.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Nog geen publieke API-endpoints</div><div class="article-card-excerpt">De huidige build toont vooral de account-, billing- en uploadflow. Een publieke API-laag voor integrerende klanten is nog geen onderdeel van deze versie.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Belangrijk voor verwachtingen</div><div class="article-card-excerpt">Zoek je vandaag een volledig werkende docx2pdf API, dan is de propositie nog niet af en moet die technische laag nog worden toegevoegd.</div></article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">De daadwerkelijke omzetting</div>
+                    <div class="article-card-excerpt">De conversie-engine achter de jobflow is nog niet actief. Daardoor staat de flow er wel, maar komt er nog niet direct een PDF terug.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Nog geen publieke API-endpoints</div>
+                    <div class="article-card-excerpt">De huidige build draait rond account, billing en uploads. Een publieke API-laag voor externe integraties is nog niet toegevoegd.</div>
+                </div>
+            </article>
+            <article class="article-card reveal lux-tilt">
+                <div class="article-card-link">
+                    <div class="article-card-title">Eerlijke conclusie</div>
+                    <div class="article-card-excerpt">De propositie is helder en aantrekkelijk, maar technisch nog niet af voor klanten die vandaag direct DOCX naar PDF willen omzetten.</div>
+                </div>
+            </article>
         </div>
     </div>
 </section>
