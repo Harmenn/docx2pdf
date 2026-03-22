@@ -1,7 +1,7 @@
 @{
     var title = (ViewData["Title"] as string) ?? "Docx2Pdf";
     var metaTitle = (ViewData["MetaTitle"] as string) ?? $"{title} | Docx2Pdf";
-    var metaDescription = (ViewData["MetaDescription"] as string) ?? "DOCX naar PDF converter met accounts, credits en betaalflow.";
+    var metaDescription = (ViewData["MetaDescription"] as string) ?? "Windows-first DOCX naar PDF starter voor developers, met accounts, credits, checkout en jobbeheer.";
 }
 <!DOCTYPE html>
 <html lang="nl">
@@ -28,7 +28,8 @@
             <div class="collapse navbar-collapse" id="navMain">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 primary-nav">
                     <li class="nav-item"><a class="nav-link" href="/#product">Product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#flow">Flow</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#developer-fit">Voor wie</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#what-you-get">Wat je krijgt</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#credits">Prijzen</a></li>
                     <li class="nav-item"><a class="nav-link" asp-controller="Convert" asp-action="Index">Converter</a></li>
                 </ul>
@@ -60,13 +61,14 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text">Docx2Pdf</span></div>
-                <div class="small text-muted">Windows-first conversieplatform voor DOCX naar PDF, met credits, betalingen en beheer.</div>
+                <div class="small text-muted">Developer starter voor een Windows-first DOCX naar PDF dienst, met auth, credits, checkout en jobbeheer.</div>
             </div>
             <div class="footer-links">
                 <div class="footer-title">Snel naar</div>
                 <div class="footer-nav">
                     <a class="footer-link" href="/#product">Product</a>
-                    <a class="footer-link" href="/#flow">Flow</a>
+                    <a class="footer-link" href="/#developer-fit">Voor wie</a>
+                    <a class="footer-link" href="/#what-you-get">Wat je krijgt</a>
                     <a class="footer-link" href="/#credits">Prijzen</a>
                     <a class="footer-link" href="/convert">Converter</a>
                     <a class="footer-link" href="/privacy">Privacy</a>
@@ -74,8 +76,8 @@
             </div>
             <div class="footer-meta">
                 <div class="footer-title">Status</div>
-                <div class="footer-status"><span class="status-dot" aria-hidden="true"></span><span class="fw-semibold">Klaar voor koppeling</span></div>
-                <div class="small text-muted">Conversie-engine als uitbreidbaar integratiepunt</div>
+                <div class="footer-status"><span class="status-dot" aria-hidden="true"></span><span class="fw-semibold">Starter gereed</span></div>
+                <div class="small text-muted">Koppel je eigen conversie-engine op de bestaande flow</div>
             </div>
         </div>
         <div class="footer-bottom small text-muted">&copy; @DateTime.UtcNow.Year Docx2Pdf</div>
