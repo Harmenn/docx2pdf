@@ -4,51 +4,71 @@
 @{
     var nl = new CultureInfo("nl-NL");
     ViewData["Title"] = "DOCX naar PDF";
-    ViewData["MetaTitle"] = "DOCX naar PDF zonder seat licenses of enterprise gedoe | Docx2Pdf";
-    ViewData["MetaDescription"] = "DOCX naar PDF moet simpel zijn. Geen seat licenses, geen enterprise calls, geen eindeloos uitgezoek. Upload je DOCX en regel conversies via een heldere flow met spotgoedkope credits.";
+    ViewData["MetaTitle"] = "DOCX naar PDF zonder gezeik | Docx2Pdf";
+    ViewData["MetaDescription"] = "Drop je DOCX en krijg direct je PDF terug. Geen LibreOffice-circus, geen seat licenses en geen enterprise sales.";
     var pricing = Model.Pricing;
 }
 
 <section class="hero hero-bg" id="product">
     <div class="container py-5">
         <div class="row align-items-start g-4">
-            <div class="col-12 col-lg-6 reveal">
-                <div class="eyebrow">Hoe kan iets simpels als DOCX naar PDF zo ingewikkeld gemaakt worden?</div>
-                <h1 class="display-5 fw-bold hero-title">Zet DOCX om naar PDF zonder seat licenses, enterprise sales of ander gezeik</h1>
-                <p class="lead text-muted mt-3">Andere aanbieders maken van een simpele conversie een licensing-puzzel. Hier hoort het simpel te zijn: DOCX erin, PDF eruit, en een helder creditmodel zonder gedoe.</p>
-                <div class="credit-logic-list hero-quick-facts mt-4">
-                    <div>Geen seat-based licenties of teamformules</div>
-                    <div>Spotgoedkope credits in plaats van langdurig contractgedoe</div>
-                    <div>Upload, status en jobhistorie in dezelfde flow</div>
+            <div class="col-12 col-lg-5 reveal">
+                <div class="eyebrow">Docx erin. Pdf eruit.</div>
+                <h1 class="display-4 fw-bold hero-title hero-title-wide">Drop je DOCX en krijg direct je PDF terug</h1>
+                <p class="lead text-muted mt-3">Hoe kan dit anno nu nog steeds zo'n gedoe zijn? Seat licenses, enterprise sales, LibreOffice-workarounds, perpetual licensing, uitzoeken hoeveel mensen er in je team zitten. Onnodig. Hier hoort het simpel te zijn.</p>
+                <div class="hero-badges mt-4">
+                    <span class="badge-soft">Geen LibreOffice-circus</span>
+                    <span class="badge-soft">Geen seats of contractgedoe</span>
+                    <span class="badge-soft">Spotgoedkope credits</span>
                 </div>
                 <div class="hero-ctas d-flex flex-column flex-sm-row gap-2 mt-4">
-                    <a class="btn btn-primary btn-lg btn-premium" asp-area="Identity" asp-page="/Account/Register">Start en test de flow</a>
-                    <a class="btn btn-outline-secondary btn-lg btn-premium-link" asp-controller="Convert" asp-action="Index">Bekijk de converter</a>
+                    <a class="btn btn-primary btn-lg btn-premium" href="#demo-dropzone">Test de homepage-demo</a>
+                    <a class="btn btn-outline-secondary btn-lg btn-premium-link" href="#credits">Bekijk prijzen</a>
                 </div>
                 <div class="hero-secondary-links mt-3">
-                    <a class="link-muted fw-semibold" href="#credits">Bekijk hoe goedkoop credits zijn</a>
+                    <a class="link-muted fw-semibold" asp-controller="Convert" asp-action="Index">Of open direct de converter</a>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 reveal">
-                <div class="hero-demo">
-                    <div class="card-saas">
-                        <div class="card-saas-head">
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+            <div class="col-12 col-lg-7 reveal">
+                <div class="hero-demo-shell">
+                    <div class="hero-drop-panel">
+                        <div class="hero-drop-head">
+                            <div>
+                                <div class="hero-drop-kicker">Direct proberen</div>
+                                <div class="hero-drop-title">Kom op, donder die DOCX hier maar neer.</div>
                             </div>
-                            <span class="pill">Eenvoudige conversieflow</span>
+                            <span class="hero-drop-pill">Snelle demo</span>
                         </div>
-                        <div class="codebox codebox-response mt-3">
-<pre class="m-0"><code>{
-  "input": "contract.docx",
-  "status": "configuration_required",
-  "creditsRequired": 1,
-  "provider": "placeholder",
-  "nextStep": "job wacht op actieve conversie-engine"
-}</code></pre>
+                        <label class="hero-dropzone" id="demo-dropzone" for="heroDocxInput" tabindex="0">
+                            <input id="heroDocxInput" type="file" accept=".docx" hidden />
+                            <div class="hero-dropzone-copy">
+                                <span class="hero-dropzone-icon" aria-hidden="true">DOCX</span>
+                                <strong>Sleep je bestand hierheen</strong>
+                                <span>of klik en pak een `.docx` van je schijf</span>
+                            </div>
+                            <div class="hero-dropzone-meta">
+                                <span>Direct downloadgevoel</span>
+                                <span>Geen setup-ritueel</span>
+                            </div>
+                        </label>
+                        <div class="hero-drop-console" aria-live="polite">
+                            <div class="hero-drop-console-line" id="heroDropStatus">Klaar voor een DOCX. Niet moeilijk doen, gewoon droppen.</div>
+                            <div class="hero-drop-console-line is-muted" id="heroDropMeta">Na de drop laten we direct de gewenste UX zien: uploaden, omzetten, downloaden.</div>
                         </div>
-                        <div class="mt-4 small text-muted">
-                            De productflow is opgezet rond eenvoud. De daadwerkelijke conversie-engine is nog het open onderdeel in deze build.
+                    </div>
+
+                    <div class="hero-proof-strip">
+                        <div class="hero-proof-item">
+                            <span class="hero-proof-value">1</span>
+                            <span class="hero-proof-label">bestand erin</span>
+                        </div>
+                        <div class="hero-proof-item">
+                            <span class="hero-proof-value">1</span>
+                            <span class="hero-proof-label">pdf eruit</span>
+                        </div>
+                        <div class="hero-proof-item">
+                            <span class="hero-proof-value">0</span>
+                            <span class="hero-proof-label">zin in enterprise-gedoe</span>
                         </div>
                     </div>
                 </div>
@@ -59,28 +79,25 @@
 
 <section class="section section-soft" id="developer-fit">
     <div class="container py-5">
-        <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Waarom dit aantrekkelijk is</h2>
-            <p class="text-muted mb-0">Omdat documentconversie meestal onnodig ingewikkeld, duur en traag wordt gemaakt.</p>
+        <div class="section-head reveal">
+            <h2 class="h1 fw-bold mb-2">Waar iedereen klaar mee is</h2>
+            <p class="text-muted mb-0">De markt maakt van documentconversie veel te vaak een inkooptraject. Dat is precies het probleem dat deze homepage meteen moet afvangen.</p>
         </div>
-        <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Geen licentie-ellende</div>
-                    <div class="article-card-excerpt">Geen gedoe met seats, teamgroottes, perpetual licenses of ondoorzichtige enterprise modellen.</div>
-                </div>
+        <div class="pain-grid mt-4">
+            <article class="pain-card reveal">
+                <div class="pain-card-label">Niet nodig</div>
+                <div class="pain-card-title">Seat licenses en teamformules</div>
+                <div class="pain-card-copy">Alsof je eerst een organisatiechart moet invullen voordat een DOCX een PDF mag worden.</div>
             </article>
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Heldere prijs per conversie</div>
-                    <div class="article-card-excerpt">Je ziet direct wat credits kosten en hoe je volumeprijs omlaag gaat. Geen verborgen saleslaag ertussen.</div>
-                </div>
+            <article class="pain-card reveal">
+                <div class="pain-card-label">Ook niet nodig</div>
+                <div class="pain-card-title">LibreOffice-scriptjes en servergedoe</div>
+                <div class="pain-card-copy">Niemand wil discussies over headless setup, fonts, containers en why-is-this-broken-op-prod.</div>
             </article>
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Simpeler voor gebruikers</div>
-                    <div class="article-card-excerpt">Upload, status en download zitten op één plek in plaats van verspreid over losse tools en handmatige processen.</div>
-                </div>
+            <article class="pain-card reveal">
+                <div class="pain-card-label">Helemaal niet nodig</div>
+                <div class="pain-card-title">Salescalls voor iets simpels</div>
+                <div class="pain-card-copy">Je wilt converteren, niet eerst een offerte aanvragen voor het voorrecht om bestanden om te zetten.</div>
             </article>
         </div>
     </div>
@@ -88,66 +105,46 @@
 
 <section class="section" id="what-you-get">
     <div class="container py-5">
-        <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Wat je nu al krijgt</h2>
-            <p class="text-muted mb-0">Alles hieronder zit al in de huidige productflow.</p>
+        <div class="section-head reveal">
+            <h2 class="h1 fw-bold mb-2">Wat je hier wél krijgt</h2>
+            <p class="text-muted mb-0">Focus op de kern van het product: zo snel mogelijk van DOCX naar PDF, met een afrekenmodel dat niet in de weg zit.</p>
         </div>
         <div class="articles-grid mt-4">
             <article class="article-card reveal lux-tilt">
                 <div class="article-card-link">
-                    <div class="article-card-title">Upload en jobtracking</div>
-                    <div class="article-card-excerpt">DOCX-bestanden uploaden, jobstatus volgen en outputbestanden klaarzetten voor download.</div>
+                    <div class="article-card-title">Directe flow</div>
+                    <div class="article-card-excerpt">Uploaden, verwerken en downloaden horen als één vloeiende actie te voelen. Niet als drie losse systemen aan elkaar geknoopt.</div>
                 </div>
             </article>
             <article class="article-card reveal lux-tilt">
                 <div class="article-card-link">
-                    <div class="article-card-title">Credits en betalingen</div>
-                    <div class="article-card-excerpt">Credits kopen via Mollie, betaalstatus volgen en facturen terugvinden vanuit dezelfde flow.</div>
+                    <div class="article-card-title">Prijs die te snappen is</div>
+                    <div class="article-card-excerpt">Credits zijn er om het simpel te houden, niet om extra verwarring toe te voegen. Je ziet meteen waar je aan toe bent.</div>
                 </div>
             </article>
             <article class="article-card reveal lux-tilt">
                 <div class="article-card-link">
-                    <div class="article-card-title">Accountomgeving</div>
-                    <div class="article-card-excerpt">Registreren, inloggen, creditsaldo bekijken en recente conversies terugzien in je eigen account.</div>
-                </div>
-            </article>
-        </div>
-        <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Adminbeheer</div>
-                    <div class="article-card-excerpt">Users bekijken, credits ophogen en recente jobs en betalingen controleren vanuit één adminpagina.</div>
-                </div>
-            </article>
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Goedkope volumeprijzen</div>
-                    <div class="article-card-excerpt">Een staffelmodel voor credits is aanwezig, zodat je prijs per conversie laag en voorspelbaar blijft.</div>
-                </div>
-            </article>
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Jobhistorie per gebruiker</div>
-                    <div class="article-card-excerpt">Niet alleen converteren, maar ook terugzien wat eerder is geüpload en wat de status daarvan was.</div>
+                    <div class="article-card-title">Account pas waar het helpt</div>
+                    <div class="article-card-excerpt">Jobhistorie, credits en betalingen zijn er voor overzicht. Niet als hoofdpunt van de productbelofte.</div>
                 </div>
             </article>
         </div>
     </div>
 </section>
 
-<section class="section" id="how-it-works">
+<section class="section section-soft" id="how-it-works">
     <div class="container py-5">
-        <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Hoe de flow werkt</h2>
-            <p class="text-muted mb-0">Simpel hoort ook echt simpel te voelen.</p>
+        <div class="section-head reveal">
+            <h2 class="h1 fw-bold mb-2">Zo hoort het te voelen</h2>
+            <p class="text-muted mb-0">Niet als software die zichzelf belangrijker vindt dan jouw bestand.</p>
         </div>
         <ol class="steps steps-flow mt-4">
             <li class="reveal">
                 <span class="step-nr">1</span>
                 <div class="step-copy">
                     <span class="step-kicker">Stap 1</span>
-                    <strong>Maak een account en koop credits</strong>
-                    <span>Geen offertegesprekken of licentie-uitzoekwerk. Je kiest gewoon het volume dat past.</span>
+                    <strong>Drop je DOCX</strong>
+                    <span>Geen intake, geen wizard, geen “let's schedule a quick call”. Gewoon het bestand erin.</span>
                 </div>
             </li>
             <li class="step-connector reveal" aria-hidden="true"><span>&rarr;</span></li>
@@ -155,8 +152,8 @@
                 <span class="step-nr">2</span>
                 <div class="step-copy">
                     <span class="step-kicker">Stap 2</span>
-                    <strong>Upload een DOCX-bestand</strong>
-                    <span>Het bestand komt in een conversiejob terecht, zodat status, foutafhandeling en download logisch op één plek blijven.</span>
+                    <strong>Laat de conversie zijn werk doen</strong>
+                    <span>Zonder dat jij hoeft na te denken over licenties, Office-installaties of welk pakket deze week weer moeilijk doet.</span>
                 </div>
             </li>
             <li class="step-connector reveal" aria-hidden="true"><span>&rarr;</span></li>
@@ -164,8 +161,8 @@
                 <span class="step-nr">3</span>
                 <div class="step-copy">
                     <span class="step-kicker">Stap 3</span>
-                    <strong>Download de PDF zodra de job klaar is</strong>
-                    <span>Credits, jobhistorie en outputbestanden blijven daarna zichtbaar in het account en beheer.</span>
+                    <strong>Pak direct je PDF</strong>
+                    <span>Dat is de hele belofte. Die moet op de homepage al voelbaar zijn.</span>
                 </div>
             </li>
         </ol>
@@ -174,9 +171,9 @@
 
 <section id="credits" class="section">
     <div class="container py-5">
-        <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Credits voor conversies</h2>
-            <p class="text-muted mb-0">Spotgoedkope credits werken vaak beter dan seat pricing, contractsjablonen en ellenlange offertetrajecten.</p>
+        <div class="section-head reveal">
+            <h2 class="h1 fw-bold mb-2">Spotgoedkope credits</h2>
+            <p class="text-muted mb-0">Niet afrekenen per seat, per team of per onduidelijke enterprise-tier. Gewoon per conversie, helder en goedkoop.</p>
         </div>
         <div class="credit-logic-list mt-3 reveal" aria-label="Uitleg over credits">
             <div>1 conversie = 1 credit</div>
@@ -197,7 +194,7 @@
                     <div class="credit-slider-copy">
                         <div>
                             <h3 class="h4 fw-bold mb-1">Kies je volume</h3>
-                            <p class="text-muted mb-0">Elke succesvolle conversie kan 1 credit verbruiken.</p>
+                            <p class="text-muted mb-0">Meer volume, lagere prijs per conversie. Zonder dat je eerst hoeft te onderhandelen.</p>
                         </div>
                     </div>
                     <div class="credit-slider-controls">
@@ -221,9 +218,9 @@
                         </div>
                         <div class="credit-presets-head">Veelgekozen volumes</div>
                         <div class="credit-presets">
-                            <button class="credit-preset" type="button" data-credit-preset="100"><span class="credit-preset-copy"><span class="credit-preset-value">100 credits</span><span class="credit-preset-meta">testbatch</span></span></button>
-                            <button class="credit-preset is-active is-recommended" type="button" data-credit-preset="250"><span class="credit-preset-copy"><span class="credit-preset-value">250 credits</span><span class="credit-preset-meta">startpakket</span></span><span class="credit-preset-badge">Aanbevolen</span></button>
-                            <button class="credit-preset" type="button" data-credit-preset="1000"><span class="credit-preset-copy"><span class="credit-preset-value">1.000 credits</span><span class="credit-preset-meta">lagere prijs</span></span></button>
+                            <button class="credit-preset" type="button" data-credit-preset="100"><span class="credit-preset-copy"><span class="credit-preset-value">100 credits</span><span class="credit-preset-meta">eerste batch</span></span></button>
+                            <button class="credit-preset is-active is-recommended" type="button" data-credit-preset="250"><span class="credit-preset-copy"><span class="credit-preset-value">250 credits</span><span class="credit-preset-meta">lekker starten</span></span><span class="credit-preset-badge">Aanbevolen</span></button>
+                            <button class="credit-preset" type="button" data-credit-preset="1000"><span class="credit-preset-copy"><span class="credit-preset-value">1.000 credits</span><span class="credit-preset-meta">laagste prijs</span></span></button>
                         </div>
                         <div id="creditVolumeError" class="credit-input-error" aria-live="polite"></div>
                     </div>
@@ -231,13 +228,13 @@
 
                 <div class="price pricing-card pricing-card-static price-slider-card reveal" tabindex="0">
                     <div class="price-top">
-                        <div><div class="price-name">Directe prijs</div><div class="price-sub">Geen seats, geen teamstaffels, gewoon een helder creditmodel</div></div>
+                        <div><div class="price-name">Directe prijs</div><div class="price-sub">Geen verrassingen, geen contracttaal, gewoon rekenen</div></div>
                         <div class="volume-discount-badge"><span id="creditSliderDiscount">@pricing.DefaultQuote.DiscountPercent</span>% korting</div>
                     </div>
                     <div class="price-value" id="creditSliderSubtotal">@pricing.DefaultQuote.SubtotalExVat.ToString("C", nl)</div>
                     <div class="price-sub"><span id="creditSliderCount">@pricing.Slider.DefaultCredits.ToString("N0", nl)</span> credits geselecteerd</div>
                     <div class="price-per-credit"><strong id="creditSliderUnit">@pricing.DefaultQuote.UnitPriceExVat.ToString("C", nl)</strong> per credit excl. btw</div>
-                    <div class="price-summary-note">Eenmalige aankoop, direct inzetbaar in je account</div>
+                    <div class="price-summary-note">Eenmalig inkopen, direct gebruiken</div>
                     <div class="price-meta">
                         <div class="price-meta-row"><span class="k">Aantal credits</span><span class="v" id="creditSliderCountMeta">@pricing.Slider.DefaultCredits.ToString("N0", nl)</span></div>
                         <div class="price-meta-row"><span class="k">Prijs per credit</span><span class="v" id="creditSliderUnitMeta">@pricing.DefaultQuote.UnitPriceExVat.ToString("C", nl)</span></div>
@@ -246,39 +243,10 @@
                         <div class="price-meta-row"><span class="k">Totaal incl. btw</span><span class="v" id="creditSliderTotal">@pricing.DefaultQuote.TotalInclVat.ToString("C", nl)</span></div>
                         <div class="price-meta-row"><span class="k">Volumevoordeel</span><span class="v" id="creditSliderDiscountMeta">@pricing.DefaultQuote.DiscountPercent%</span></div>
                     </div>
-                    <a id="creditOverviewCta" class="btn btn-primary w-100" href="/credits/summary?credits=@pricing.Slider.DefaultCredits">Bekijk aankoopoverzicht</a>
+                    <a id="creditOverviewCta" class="btn btn-primary w-100" href="/credits/summary?credits=@pricing.Slider.DefaultCredits">Kies credits en ga door</a>
                 </div>
             </div>
         </div>
         <script id="pricingQuotes" type="application/json">@Html.Raw(JsonSerializer.Serialize(pricing.QuoteOptions.Select(x => new { credits = x.Credits, sliderPosition = x.SliderPosition, unitPriceExVat = x.UnitPriceExVat, subtotalExVat = x.SubtotalExVat, vatAmount = x.VatAmount, totalInclVat = x.TotalInclVat, discountPercent = x.DiscountPercent })))</script>
-    </div>
-</section>
-
-<section class="section section-soft">
-    <div class="container py-5">
-        <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Wat nog ontbreekt</h2>
-            <p class="text-muted mb-0">De homepage moet eerlijk blijven over wat deze build nu wel en niet kan.</p>
-        </div>
-        <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">De daadwerkelijke omzetting</div>
-                    <div class="article-card-excerpt">De conversie-engine achter de jobflow is nog niet actief. Daardoor staat de flow er wel, maar komt er nog niet direct een PDF terug.</div>
-                </div>
-            </article>
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Nog geen publieke API-endpoints</div>
-                    <div class="article-card-excerpt">De huidige build draait rond account, billing en uploads. Een publieke API-laag voor externe integraties is nog niet toegevoegd.</div>
-                </div>
-            </article>
-            <article class="article-card reveal lux-tilt">
-                <div class="article-card-link">
-                    <div class="article-card-title">Eerlijke conclusie</div>
-                    <div class="article-card-excerpt">De propositie is helder en aantrekkelijk, maar technisch nog niet af voor klanten die vandaag direct DOCX naar PDF willen omzetten.</div>
-                </div>
-            </article>
-        </div>
     </div>
 </section>
