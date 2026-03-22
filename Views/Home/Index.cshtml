@@ -3,9 +3,9 @@
 @model Docx2Pdf.Models.ViewModels.HomeViewModel
 @{
     var nl = new CultureInfo("nl-NL");
-    ViewData["Title"] = "Docx naar PDF converter";
-    ViewData["MetaTitle"] = "Docx2Pdf | DOCX naar PDF met credits";
-    ViewData["MetaDescription"] = "Bouw een Windows-first DOCX naar PDF dienst met accounts, credits en Mollie checkout.";
+    ViewData["Title"] = "DOCX naar PDF";
+    ViewData["MetaTitle"] = "DOCX naar PDF converter voor Windows | Docx2Pdf";
+    ViewData["MetaDescription"] = "Upload DOCX-bestanden, beheer credits en zet een Windows-first DOCX naar PDF dienst op met account- en betaalflow.";
     var pricing = Model.Pricing;
 }
 
@@ -13,17 +13,20 @@
     <div class="container py-5">
         <div class="row align-items-start g-4">
             <div class="col-12 col-lg-6 reveal">
-                <div class="eyebrow">Windows-first document automation</div>
-                <h1 class="display-5 fw-bold hero-title">Van DOCX naar PDF met accounts, credits en een converterlaag die jij nog kunt koppelen</h1>
-                <p class="lead text-muted mt-3">De applicatie staat klaar voor registratie, credits, billing, tracking en uploadflows. De echte conversielogica hang je straks op 1 plek in.</p>
+                <div class="eyebrow">Private beta · Windows-first document automation</div>
+                <h1 class="display-5 fw-bold hero-title">DOCX naar PDF met accounts, credits en een flow die klaarstaat voor productie</h1>
+                <p class="lead text-muted mt-3">De productlaag staat: accounts, credits, checkout, uploads en conversiejobs. De converter-engine is het enige stuk dat nog gekoppeld hoeft te worden.</p>
                 <div class="credit-logic-list hero-quick-facts mt-4">
-                    <div>Authenticatie en accountdashboard</div>
-                    <div>Credits kopen via Mollie</div>
-                    <div>Upload- en jobflow voor DOCX naar PDF</div>
+                    <div>Upload DOCX en beheer conversiejobs per account</div>
+                    <div>Reken 1 credit per succesvolle conversie</div>
+                    <div>Koop credits via Mollie en beheer alles vanuit 1 dashboard</div>
                 </div>
                 <div class="hero-ctas d-flex flex-column flex-sm-row gap-2 mt-4">
-                    <a class="btn btn-primary btn-lg btn-premium" asp-controller="Convert" asp-action="Index">Open converter</a>
-                    <a class="btn btn-outline-secondary btn-lg btn-premium-link" asp-area="Identity" asp-page="/Account/Register">Maak account</a>
+                    <a class="btn btn-primary btn-lg btn-premium" asp-area="Identity" asp-page="/Account/Register">Maak account en test de flow</a>
+                    <a class="btn btn-outline-secondary btn-lg btn-premium-link" asp-controller="Account" asp-action="Billing">Bekijk credits</a>
+                </div>
+                <div class="hero-secondary-links mt-3">
+                    <a class="link-muted fw-semibold" href="/convert">Bekijk de converteromgeving</a>
                 </div>
             </div>
             <div class="col-12 col-lg-6 reveal">
@@ -33,7 +36,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
                             </div>
-                            <span class="pill">Conversieflow</span>
+                            <span class="pill">Wat de flow nu doet</span>
                         </div>
                         <div class="codebox codebox-response mt-3">
 <pre class="m-0"><code>{
@@ -45,8 +48,7 @@
 }</code></pre>
                         </div>
                         <div class="mt-4 small text-muted">
-                            Registraties: <strong>@Model.RegisteredUsers.ToString("N0", nl)</strong> |
-                            Afgeronde conversies: <strong>@Model.CompletedConversions.ToString("N0", nl)</strong>
+                            Eerlijk beeld van de huidige stand: upload-, account- en betaalflow werken; de echte conversie-engine hangt nog achter dit integratiepunt.
                         </div>
                     </div>
                 </div>
@@ -55,17 +57,54 @@
     </div>
 </section>
 
-<section class="section section-soft">
+<section class="section section-soft" id="flow">
     <div class="container py-5">
         <div class="section-head section-head-centered reveal">
-            <h2 class="h1 fw-bold mb-2">Wat al staat</h2>
-            <p class="text-muted mb-0">De applicatie is niet alleen een landing page. De hele productstructuur zit erin.</p>
+            <h2 class="h1 fw-bold mb-2">Wat je nu echt kunt testen</h2>
+            <p class="text-muted mb-0">Alle copy hieronder sluit aan op functies die nu al in deze build zitten.</p>
         </div>
         <div class="articles-grid mt-4">
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Credits en pricing</div><div class="article-card-excerpt">Staffelprijzen, slider, Mollie intents, webhooks en factuurdownload.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Converterjobs</div><div class="article-card-excerpt">Upload DOCX, bewaar input/output, statusafhandeling en downloadroute.</div></article>
-            <article class="article-card reveal lux-tilt"><div class="article-card-title">Tracking en admin</div><div class="article-card-excerpt">Visitor/session tracking, user linking, credits top-up en overzichtspagina.</div></article>
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Account en dashboard</div><div class="article-card-excerpt">Registreren, inloggen, creditsaldo bekijken en je recente conversies volgen vanuit je account.</div></article>
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Upload- en jobflow</div><div class="article-card-excerpt">DOCX uploaden, jobstatus opslaan, fouten afhandelen en PDF-download klaarzetten zodra de engine gekoppeld is.</div></article>
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Billing en beheer</div><div class="article-card-excerpt">Credits staffelen, Mollie checkout starten, payments teruglezen en handmatig beheren vanuit admin.</div></article>
         </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container py-5">
+        <div class="section-head section-head-centered reveal">
+            <h2 class="h1 fw-bold mb-2">Hoe de productflow werkt</h2>
+            <p class="text-muted mb-0">Kort, concreet en zonder interne jargon.</p>
+        </div>
+        <ol class="steps steps-flow mt-4">
+            <li class="reveal">
+                <span class="step-nr">1</span>
+                <div class="step-copy">
+                    <span class="step-kicker">Stap 1</span>
+                    <strong>Maak een account en koop credits</strong>
+                    <span>Gebruikers registreren zich zelf, zien direct hun saldo en kunnen credits bijkopen via Mollie.</span>
+                </div>
+            </li>
+            <li class="step-connector reveal" aria-hidden="true"><span>&rarr;</span></li>
+            <li class="reveal">
+                <span class="step-nr">2</span>
+                <div class="step-copy">
+                    <span class="step-kicker">Stap 2</span>
+                    <strong>Upload een DOCX-bestand</strong>
+                    <span>Het bestand wordt opgeslagen als conversiejob met status, foutafhandeling en eigenaarschap per gebruiker.</span>
+                </div>
+            </li>
+            <li class="step-connector reveal" aria-hidden="true"><span>&rarr;</span></li>
+            <li class="reveal">
+                <span class="step-nr">3</span>
+                <div class="step-copy">
+                    <span class="step-kicker">Stap 3</span>
+                    <strong>Koppel de converter-engine</strong>
+                    <span>De laatste stap is jouw eigen DOCX naar PDF logica op het bestaande engine-interface hangen.</span>
+                </div>
+            </li>
+        </ol>
     </div>
 </section>
 
@@ -73,7 +112,7 @@
     <div class="container py-5">
         <div class="section-head section-head-centered reveal">
             <h2 class="h1 fw-bold mb-2">Credits voor conversies</h2>
-            <p class="text-muted mb-0">De staffel is configureerbaar. Voor nu staat hij klaar zodat je straks alleen nog prijzen hoeft aan te scherpen.</p>
+            <p class="text-muted mb-0">De pricing-structuur is live in de app en kan later nog scherper worden gezet zonder de flow om te gooien.</p>
         </div>
 
         <div class="credit-slider-shell mt-3 reveal"
@@ -117,7 +156,7 @@
 
                 <div class="price pricing-card pricing-card-static price-slider-card reveal">
                     <div class="price-top">
-                        <div><div class="price-name">Directe prijs</div><div class="price-sub">Configureerbaar via `appsettings`</div></div>
+                        <div><div class="price-name">Directe prijs</div><div class="price-sub">Gebruik dit als startpunt voor je creditmodel</div></div>
                         <div class="volume-discount-badge"><span id="creditSliderDiscount">@pricing.DefaultQuote.DiscountPercent</span>% korting</div>
                     </div>
                     <div class="price-value" id="creditSliderSubtotal">@pricing.DefaultQuote.SubtotalExVat.ToString("C", nl)</div>
@@ -136,5 +175,19 @@
             </div>
         </div>
         <script id="pricingQuotes" type="application/json">@Html.Raw(JsonSerializer.Serialize(pricing.QuoteOptions.Select(x => new { credits = x.Credits, sliderPosition = x.SliderPosition, unitPriceExVat = x.UnitPriceExVat, subtotalExVat = x.SubtotalExVat, vatAmount = x.VatAmount, totalInclVat = x.TotalInclVat, discountPercent = x.DiscountPercent })))</script>
+    </div>
+</section>
+
+<section class="section section-soft">
+    <div class="container py-5">
+        <div class="section-head section-head-centered reveal">
+            <h2 class="h1 fw-bold mb-2">Belangrijk om te weten</h2>
+            <p class="text-muted mb-0">Zo voorkom je dat de homepage meer belooft dan de build nu waarmaakt.</p>
+        </div>
+        <div class="articles-grid mt-4">
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Wat al werkt</div><div class="article-card-excerpt">Auth, accountpagina's, credits, Mollie flows, adminbeheer, uploads en conversiejobs.</div></article>
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Wat nog ontbreekt</div><div class="article-card-excerpt">De daadwerkelijke DOCX naar PDF engine. Die wordt achter het bestaande interface gekoppeld.</div></article>
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Voor wie dit nu handig is</div><div class="article-card-excerpt">Voor het neerzetten van het productfundament, niet voor een publieke campagne naar eindgebruikers.</div></article>
+        </div>
     </div>
 </section>
