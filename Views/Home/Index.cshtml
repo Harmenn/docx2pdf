@@ -1,0 +1,140 @@
+@using System.Globalization
+@using System.Text.Json
+@model Docx2Pdf.Models.ViewModels.HomeViewModel
+@{
+    var nl = new CultureInfo("nl-NL");
+    ViewData["Title"] = "Docx naar PDF converter";
+    ViewData["MetaTitle"] = "Docx2Pdf | DOCX naar PDF met credits";
+    ViewData["MetaDescription"] = "Bouw een Windows-first DOCX naar PDF dienst met accounts, credits en Mollie checkout.";
+    var pricing = Model.Pricing;
+}
+
+<section class="hero hero-bg" id="product">
+    <div class="container py-5">
+        <div class="row align-items-start g-4">
+            <div class="col-12 col-lg-6 reveal">
+                <div class="eyebrow">Windows-first document automation</div>
+                <h1 class="display-5 fw-bold hero-title">Van DOCX naar PDF met accounts, credits en een converterlaag die jij nog kunt koppelen</h1>
+                <p class="lead text-muted mt-3">De applicatie staat klaar voor registratie, credits, billing, tracking en uploadflows. De echte conversielogica hang je straks op 1 plek in.</p>
+                <div class="credit-logic-list hero-quick-facts mt-4">
+                    <div>Authenticatie en accountdashboard</div>
+                    <div>Credits kopen via Mollie</div>
+                    <div>Upload- en jobflow voor DOCX naar PDF</div>
+                </div>
+                <div class="hero-ctas d-flex flex-column flex-sm-row gap-2 mt-4">
+                    <a class="btn btn-primary btn-lg btn-premium" asp-controller="Convert" asp-action="Index">Open converter</a>
+                    <a class="btn btn-outline-secondary btn-lg btn-premium-link" asp-area="Identity" asp-page="/Account/Register">Maak account</a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 reveal">
+                <div class="hero-demo">
+                    <div class="card-saas">
+                        <div class="card-saas-head">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+                            </div>
+                            <span class="pill">Conversieflow</span>
+                        </div>
+                        <div class="codebox codebox-response mt-3">
+<pre class="m-0"><code>{
+  "input": "contract.docx",
+  "status": "configuration_required",
+  "creditsRequired": 1,
+  "provider": "placeholder",
+  "nextStep": "koppel je eigen docx->pdf engine"
+}</code></pre>
+                        </div>
+                        <div class="mt-4 small text-muted">
+                            Registraties: <strong>@Model.RegisteredUsers.ToString("N0", nl)</strong> |
+                            Afgeronde conversies: <strong>@Model.CompletedConversions.ToString("N0", nl)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft">
+    <div class="container py-5">
+        <div class="section-head section-head-centered reveal">
+            <h2 class="h1 fw-bold mb-2">Wat al staat</h2>
+            <p class="text-muted mb-0">De applicatie is niet alleen een landing page. De hele productstructuur zit erin.</p>
+        </div>
+        <div class="articles-grid mt-4">
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Credits en pricing</div><div class="article-card-excerpt">Staffelprijzen, slider, Mollie intents, webhooks en factuurdownload.</div></article>
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Converterjobs</div><div class="article-card-excerpt">Upload DOCX, bewaar input/output, statusafhandeling en downloadroute.</div></article>
+            <article class="article-card reveal lux-tilt"><div class="article-card-title">Tracking en admin</div><div class="article-card-excerpt">Visitor/session tracking, user linking, credits top-up en overzichtspagina.</div></article>
+        </div>
+    </div>
+</section>
+
+<section id="credits" class="section">
+    <div class="container py-5">
+        <div class="section-head section-head-centered reveal">
+            <h2 class="h1 fw-bold mb-2">Credits voor conversies</h2>
+            <p class="text-muted mb-0">De staffel is configureerbaar. Voor nu staat hij klaar zodat je straks alleen nog prijzen hoeft aan te scherpen.</p>
+        </div>
+
+        <div class="credit-slider-shell mt-3 reveal"
+             data-min-credits="@pricing.Slider.MinCredits"
+             data-max-credits="@pricing.Slider.MaxCredits"
+             data-min-price="@pricing.Slider.MinPriceEuro.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+             data-max-price="@pricing.Slider.MaxPriceEuro.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+             data-price-curve-exponent="@pricing.Slider.PriceCurveExponent.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+             data-vat-rate="@pricing.Slider.VatRate.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+             data-quotes-target="pricingQuotes">
+            <div class="credit-slider-grid">
+                <div class="credit-volume-panel">
+                    <div class="credit-slider-copy">
+                        <div>
+                            <h3 class="h4 fw-bold mb-1">Kies je volume</h3>
+                            <p class="text-muted mb-0">Elke succesvolle conversie kan 1 credit verbruiken.</p>
+                        </div>
+                    </div>
+                    <div class="credit-slider-controls">
+                        <div class="credit-control-head">
+                            <label class="small text-muted d-block mb-0" for="creditVolume">Aantal credits</label>
+                            <label class="small text-muted d-block mb-0" for="creditVolumeInput">Exact aantal</label>
+                        </div>
+                        <div class="credit-control-inputs">
+                            <div class="credit-slider-wrap">
+                                <input id="creditVolume" class="credit-slider-input" type="range" min="@pricing.Slider.SliderMinCredits" max="@pricing.Slider.SliderMaxPosition" step="1" value="@pricing.Slider.SliderDefaultPosition" />
+                            </div>
+                            <div class="credit-input-wrap">
+                                <input id="creditVolumeInput" class="credit-number-input" type="text" inputmode="numeric" value="@pricing.Slider.DefaultCredits.ToString("N0", nl)" />
+                                <span class="credit-input-unit">credits</span>
+                            </div>
+                        </div>
+                        <div class="credit-presets">
+                            <button class="credit-preset" type="button" data-credit-preset="100"><span class="credit-preset-copy"><span class="credit-preset-value">100 credits</span><span class="credit-preset-meta">testbatch</span></span></button>
+                            <button class="credit-preset is-active is-recommended" type="button" data-credit-preset="250"><span class="credit-preset-copy"><span class="credit-preset-value">250 credits</span><span class="credit-preset-meta">startpakket</span></span><span class="credit-preset-badge">Aanbevolen</span></button>
+                            <button class="credit-preset" type="button" data-credit-preset="1000"><span class="credit-preset-copy"><span class="credit-preset-value">1.000 credits</span><span class="credit-preset-meta">lagere prijs</span></span></button>
+                        </div>
+                        <div id="creditVolumeError" class="credit-input-error" aria-live="polite"></div>
+                    </div>
+                </div>
+
+                <div class="price pricing-card pricing-card-static price-slider-card reveal">
+                    <div class="price-top">
+                        <div><div class="price-name">Directe prijs</div><div class="price-sub">Configureerbaar via `appsettings`</div></div>
+                        <div class="volume-discount-badge"><span id="creditSliderDiscount">@pricing.DefaultQuote.DiscountPercent</span>% korting</div>
+                    </div>
+                    <div class="price-value" id="creditSliderSubtotal">@pricing.DefaultQuote.SubtotalExVat.ToString("C", nl)</div>
+                    <div class="price-sub"><span id="creditSliderCount">@pricing.Slider.DefaultCredits.ToString("N0", nl)</span> credits geselecteerd</div>
+                    <div class="price-per-credit"><strong id="creditSliderUnit">@pricing.DefaultQuote.UnitPriceExVat.ToString("C", nl)</strong> per credit excl. btw</div>
+                    <div class="price-meta">
+                        <div class="price-meta-row"><span class="k">Aantal credits</span><span class="v" id="creditSliderCountMeta">@pricing.Slider.DefaultCredits.ToString("N0", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Prijs per credit</span><span class="v" id="creditSliderUnitMeta">@pricing.DefaultQuote.UnitPriceExVat.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Subtotaal excl. btw</span><span class="v" id="creditSliderSubtotalMeta">@pricing.DefaultQuote.SubtotalExVat.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Btw</span><span class="v" id="creditSliderVat">@pricing.DefaultQuote.VatAmount.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Totaal incl. btw</span><span class="v" id="creditSliderTotal">@pricing.DefaultQuote.TotalInclVat.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Volumevoordeel</span><span class="v" id="creditSliderDiscountMeta">@pricing.DefaultQuote.DiscountPercent%</span></div>
+                    </div>
+                    <a id="creditOverviewCta" class="btn btn-primary w-100" href="/credits/summary?credits=@pricing.Slider.DefaultCredits">Bekijk aankoopoverzicht</a>
+                </div>
+            </div>
+        </div>
+        <script id="pricingQuotes" type="application/json">@Html.Raw(JsonSerializer.Serialize(pricing.QuoteOptions.Select(x => new { credits = x.Credits, sliderPosition = x.SliderPosition, unitPriceExVat = x.UnitPriceExVat, subtotalExVat = x.SubtotalExVat, vatAmount = x.VatAmount, totalInclVat = x.TotalInclVat, discountPercent = x.DiscountPercent })))</script>
+    </div>
+</section>

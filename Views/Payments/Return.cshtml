@@ -1,0 +1,23 @@
+@using System.Globalization
+@model Docx2Pdf.Models.ViewModels.BillingReturnViewModel
+@{
+    var nl = new CultureInfo("nl-NL");
+    ViewData["Title"] = "Betaalstatus";
+}
+<section class="section">
+    <div class="container py-5">
+        <div class="card-saas">
+            <h1 class="h3 fw-bold mb-3">Betaalstatus</h1>
+            <div class="price-meta">
+                <div class="price-meta-row"><span class="k">Status</span><span class="v">@Model.Status</span></div>
+                <div class="price-meta-row"><span class="k">Credits toegepast</span><span class="v">@(Model.CreditsApplied ? "Ja" : "Nee")</span></div>
+                <div class="price-meta-row"><span class="k">Nieuw saldo</span><span class="v">@Model.CurrentCredits.ToString("N0", nl)</span></div>
+                <div class="price-meta-row"><span class="k">Provider betaling</span><span class="v">@Model.ProviderPaymentId</span></div>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.InvoiceDownloadUrl))
+            {
+                <a class="btn btn-outline-secondary mt-3" href="@Model.InvoiceDownloadUrl">Download factuur</a>
+            }
+        </div>
+    </div>
+</section>

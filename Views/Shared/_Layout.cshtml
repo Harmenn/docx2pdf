@@ -1,0 +1,88 @@
+@{
+    var title = (ViewData["Title"] as string) ?? "Docx2Pdf";
+    var metaTitle = (ViewData["MetaTitle"] as string) ?? $"{title} | Docx2Pdf";
+    var metaDescription = (ViewData["MetaDescription"] as string) ?? "DOCX naar PDF converter met accounts, credits en betaalflow.";
+}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@metaTitle</title>
+    <meta name="description" content="@metaDescription" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/premium-animations.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("Head", required: false)
+</head>
+<body class="app-body @(ViewData["BodyClass"] as string ?? "")">
+<header class="app-header">
+    <nav class="navbar navbar-expand-lg app-nav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-text">Docx2Pdf</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 primary-nav">
+                    <li class="nav-item"><a class="nav-link" href="/#product">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#credits">Prijzen</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Convert" asp-action="Index">Converter</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Billing">Credits</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 ms-auto nav-user">
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main role="main" class="app-main">
+    @if (TempData["Success"] != null || TempData["Error"] != null)
+    {
+        <div class="container mt-3">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+        </div>
+    }
+    @RenderBody()
+</main>
+<footer class="app-footer">
+    <div class="container py-4">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo"><span class="brand-mark" aria-hidden="true"></span><span class="brand-text">Docx2Pdf</span></div>
+                <div class="small text-muted">Windows-first conversieplatform voor DOCX naar PDF, met credits, betalingen en beheer.</div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-title">Snel naar</div>
+                <div class="footer-nav">
+                    <a class="footer-link" href="/#product">Product</a>
+                    <a class="footer-link" href="/#credits">Prijzen</a>
+                    <a class="footer-link" href="/convert">Converter</a>
+                    <a class="footer-link" href="/privacy">Privacy</a>
+                </div>
+            </div>
+            <div class="footer-meta">
+                <div class="footer-title">Status</div>
+                <div class="footer-status"><span class="status-dot" aria-hidden="true"></span><span class="fw-semibold">Klaar voor koppeling</span></div>
+                <div class="small text-muted">Conversie-engine als uitbreidbaar integratiepunt</div>
+            </div>
+        </div>
+        <div class="footer-bottom small text-muted">&copy; @DateTime.UtcNow.Year Docx2Pdf</div>
+    </div>
+</footer>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/premium-animations.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

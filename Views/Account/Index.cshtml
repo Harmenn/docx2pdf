@@ -1,0 +1,41 @@
+@using System.Globalization
+@model Docx2Pdf.Models.ViewModels.AccountOverviewViewModel
+@{
+    var nl = new CultureInfo("nl-NL");
+    ViewData["Title"] = "Account";
+}
+<section class="section">
+    <div class="container py-5">
+        <partial name="_AccountSectionNav" />
+        <div class="row g-4 mt-2">
+            <div class="col-12 col-md-4"><div class="price pricing-card pricing-card-static"><div class="price-name">Credits</div><div class="price-value">@Model.CurrentCredits.ToString("N0", nl)</div></div></div>
+            <div class="col-12 col-md-4"><div class="price pricing-card pricing-card-static"><div class="price-name">Conversies 30 dagen</div><div class="price-value">@Model.ConversionsLast30Days.ToString("N0", nl)</div></div></div>
+            <div class="col-12 col-md-4"><div class="price pricing-card pricing-card-static"><div class="price-name">Betaalde top-ups</div><div class="price-value">@Model.SuccessfulPayments.ToString("N0", nl)</div></div></div>
+        </div>
+
+        <div class="card-saas mt-4">
+            <h2 class="h4 fw-bold mb-3">Recente conversies</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead><tr><th>Bestand</th><th>Status</th><th>Credits</th><th>Tijd</th><th></th></tr></thead>
+                    <tbody>
+                    @foreach (var job in Model.RecentConversions)
+                    {
+                        <tr>
+                            <td>@job.OriginalFileName</td>
+                            <td>@job.Status</td>
+                            <td>@job.CreditsDelta</td>
+                            <td>@job.CreatedUtc.ToLocalTime().ToString("g", nl)</td>
+                            <td>@if (!string.IsNullOrWhiteSpace(job.DownloadUrl)) { <a href="@job.DownloadUrl">Download</a> }</td>
+                        </tr>
+                        @if (!string.IsNullOrWhiteSpace(job.FailureReason))
+                        {
+                            <tr><td colspan="5" class="small text-muted">@job.FailureReason</td></tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

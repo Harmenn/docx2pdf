@@ -1,0 +1,25 @@
+@using System.Globalization
+@model Docx2Pdf.Models.ViewModels.BillingSummaryViewModel
+@{
+    var nl = new CultureInfo("nl-NL");
+    ViewData["Title"] = "Aankoopoverzicht";
+}
+<section class="section">
+    <div class="container py-5">
+        <div class="card-saas">
+            <h1 class="h3 fw-bold mb-3">Aankoopoverzicht</h1>
+            <div class="price-meta">
+                <div class="price-meta-row"><span class="k">Credits</span><span class="v">@Model.Quote.Credits.ToString("N0", nl)</span></div>
+                <div class="price-meta-row"><span class="k">Prijs per credit</span><span class="v">@Model.Quote.UnitPriceExVat.ToString("C", nl)</span></div>
+                <div class="price-meta-row"><span class="k">Subtotaal excl. btw</span><span class="v">@Model.Quote.SubtotalExVat.ToString("C", nl)</span></div>
+                <div class="price-meta-row"><span class="k">Btw</span><span class="v">@Model.Quote.VatAmount.ToString("C", nl)</span></div>
+                <div class="price-meta-row"><span class="k">Totaal incl. btw</span><span class="v">@Model.Quote.TotalInclVat.ToString("C", nl)</span></div>
+            </div>
+            <form asp-action="Checkout" method="post" class="mt-4">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="credits" value="@Model.Quote.Credits" />
+                <button class="btn btn-primary" type="submit" @(Model.PaymentsEnabled ? null : "disabled")>Ga naar Mollie</button>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,60 @@
+@using System.Globalization
+@model Docx2Pdf.Models.ViewModels.BillingPageViewModel
+@{
+    var nl = new CultureInfo("nl-NL");
+    ViewData["Title"] = "Credits";
+}
+<section class="section">
+    <div class="container py-5">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <partial name="_AccountSectionNav" />
+        }
+        <div class="section-head mt-4">
+            <h1 class="h2 fw-bold mb-2">Credits kopen</h1>
+            <p class="text-muted mb-0">Huidig saldo: @Model.CurrentCredits.ToString("N0", nl) credits.</p>
+        </div>
+        <div class="credit-slider-shell mt-4"
+             data-min-credits="@Model.Slider.MinCredits"
+             data-max-credits="@Model.Slider.MaxCredits"
+             data-min-price="@Model.Slider.MinPriceEuro.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+             data-max-price="@Model.Slider.MaxPriceEuro.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+             data-price-curve-exponent="@Model.Slider.PriceCurveExponent.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+             data-vat-rate="@Model.Slider.VatRate.ToString(System.Globalization.CultureInfo.InvariantCulture)">
+            <div class="credit-slider-grid">
+                <div class="credit-volume-panel">
+                    <div class="credit-slider-controls">
+                        <div class="credit-control-head">
+                            <label class="small text-muted d-block mb-0" for="creditVolume">Aantal credits</label>
+                            <label class="small text-muted d-block mb-0" for="creditVolumeInput">Exact aantal</label>
+                        </div>
+                        <div class="credit-control-inputs">
+                            <div class="credit-slider-wrap">
+                                <input id="creditVolume" class="credit-slider-input" type="range" min="@Model.Slider.SliderMinCredits" max="@Model.Slider.SliderMaxPosition" step="1" value="@Model.Slider.SliderDefaultPosition" />
+                            </div>
+                            <div class="credit-input-wrap">
+                                <input id="creditVolumeInput" class="credit-number-input" type="text" inputmode="numeric" value="@Model.Slider.DefaultCredits.ToString("N0", nl)" />
+                                <span class="credit-input-unit">credits</span>
+                            </div>
+                        </div>
+                        <div id="creditVolumeError" class="credit-input-error" aria-live="polite"></div>
+                    </div>
+                </div>
+                <div class="price pricing-card pricing-card-static price-slider-card">
+                    <div class="price-value" id="creditSliderSubtotal">@Model.Quote.SubtotalExVat.ToString("C", nl)</div>
+                    <div class="price-sub"><span id="creditSliderCount">@Model.Quote.Credits.ToString("N0", nl)</span> credits geselecteerd</div>
+                    <div class="price-per-credit"><strong id="creditSliderUnit">@Model.Quote.UnitPriceExVat.ToString("C", nl)</strong> per credit excl. btw</div>
+                    <div class="price-meta">
+                        <div class="price-meta-row"><span class="k">Aantal credits</span><span class="v" id="creditSliderCountMeta">@Model.Quote.Credits.ToString("N0", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Prijs per credit</span><span class="v" id="creditSliderUnitMeta">@Model.Quote.UnitPriceExVat.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Subtotaal excl. btw</span><span class="v" id="creditSliderSubtotalMeta">@Model.Quote.SubtotalExVat.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Btw</span><span class="v" id="creditSliderVat">@Model.Quote.VatAmount.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Totaal incl. btw</span><span class="v" id="creditSliderTotal">@Model.Quote.TotalInclVat.ToString("C", nl)</span></div>
+                        <div class="price-meta-row"><span class="k">Volumevoordeel</span><span class="v" id="creditSliderDiscountMeta">@Model.Quote.DiscountPercent%</span></div>
+                    </div>
+                    <a id="creditOverviewCta" class="btn btn-primary w-100" href="/credits/summary?credits=@Model.Quote.Credits">Bekijk aankoopoverzicht</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,70 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Docx2Pdf.Models.ApplicationUser> SignInManager
+@inject UserManager<Docx2Pdf.Models.ApplicationUser> UserManager
+
+@{
+    var isSignedIn = SignInManager.IsSignedIn(User);
+    var appUser = isSignedIn ? await UserManager.GetUserAsync(User) : null;
+    var isAdmin = appUser != null && await UserManager.IsInRoleAsync(appUser, "Admin");
+}
+
+<ul class="navbar-nav w-100 d-lg-none mobile-account-menu">
+    @if (!isSignedIn || appUser == null)
+    {
+        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log in</a></li>
+        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Start</a></li>
+    }
+    else
+    {
+        <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Index">Mijn account</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Convert" asp-action="Index">Converter</a></li>
+        @if (isAdmin)
+        {
+            <li class="nav-item"><a class="nav-link" asp-controller="Admin" asp-action="Index">Admin</a></li>
+        }
+        <li class="nav-item">
+            <form id="logoutFormMobile" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")" method="post">
+                <a href="#" class="nav-link" onclick="document.getElementById('logoutFormMobile')?.submit(); return false;">Uitloggen</a>
+            </form>
+        </li>
+    }
+</ul>
+
+<div class="d-none d-lg-block">
+    @if (!isSignedIn || appUser == null)
+    {
+        <div class="nav-auth-actions">
+            <a class="nav-login-link" asp-area="Identity" asp-page="/Account/Login">Log in</a>
+            <a class="btn btn-primary btn-sm btn-premium nav-start-btn" asp-area="Identity" asp-page="/Account/Register">Start</a>
+        </div>
+    }
+    else
+    {
+        <div class="dropdown account-dropdown" data-bs-auto-close="outside">
+            <button class="btn account-btn" type="button" id="accountMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="account-avatar" aria-hidden="true">&#128100;</span>
+                <span class="account-btn-copy">
+                    <span class="account-btn-label">Mijn account</span>
+                    <span class="account-btn-meta">@appUser.Credits credits</span>
+                </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end account-menu" aria-labelledby="accountMenuButton">
+                <li><a class="dropdown-item" asp-controller="Account" asp-action="Index">Overzicht</a></li>
+                <li><a class="dropdown-item" asp-controller="Convert" asp-action="Index">Converter</a></li>
+                <li><a class="dropdown-item" asp-controller="Account" asp-action="Billing">Credits kopen</a></li>
+                <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Instellingen</a></li>
+                @if (isAdmin)
+                {
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index">Admin</a></li>
+                }
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                    <form class="px-3 pb-2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")" method="post">
+                        <button type="submit" class="btn btn-outline-secondary w-100">Uitloggen</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    }
+</div>

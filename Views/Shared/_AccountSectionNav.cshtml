@@ -1,0 +1,13 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString() ?? string.Empty;
+    var action = ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
+    var page = ViewContext.RouteData.Values["page"]?.ToString() ?? string.Empty;
+    string ActiveWhen(bool isActive) => isActive ? "is-active" : string.Empty;
+}
+
+<nav class="account-section-nav" aria-label="Accountsecties">
+    <a class="account-section-link @ActiveWhen(controller == "Account" && action == "Index")" href="/Account">Overzicht</a>
+    <a class="account-section-link @ActiveWhen(controller == "Convert")" href="/convert">Converter</a>
+    <a class="account-section-link @ActiveWhen(controller == "Account" && action == "Billing")" href="/Account/Billing">Credits</a>
+    <a class="account-section-link @ActiveWhen(page.StartsWith("/Account/Manage/", StringComparison.OrdinalIgnoreCase))" href="/Identity/Account/Manage/Index">Instellingen</a>
+</nav>

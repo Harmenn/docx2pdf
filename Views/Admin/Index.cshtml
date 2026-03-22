@@ -1,0 +1,47 @@
+@using System.Globalization
+@model Docx2Pdf.Models.ViewModels.AdminDashboardViewModel
+@{
+    var nl = new CultureInfo("nl-NL");
+    ViewData["Title"] = "Admin";
+}
+<section class="section">
+    <div class="container py-5">
+        <div class="section-head">
+            <h1 class="h2 fw-bold mb-2">Admin dashboard</h1>
+            <p class="text-muted mb-0">Beheer credits, bekijk users, payments en conversiejobs.</p>
+        </div>
+        <div class="row g-4 mt-2">
+            <div class="col-12 col-md-3"><div class="price pricing-card pricing-card-static"><div class="price-name">Users</div><div class="price-value">@Model.TotalUsers.ToString("N0", nl)</div></div></div>
+            <div class="col-12 col-md-3"><div class="price pricing-card pricing-card-static"><div class="price-name">Credits open</div><div class="price-value">@Model.TotalCreditsOutstanding.ToString("N0", nl)</div></div></div>
+            <div class="col-12 col-md-3"><div class="price pricing-card pricing-card-static"><div class="price-name">Conversies klaar</div><div class="price-value">@Model.TotalCompletedConversions.ToString("N0", nl)</div></div></div>
+            <div class="col-12 col-md-3"><div class="price pricing-card pricing-card-static"><div class="price-name">Betaalde payments</div><div class="price-value">@Model.TotalPaidPayments.ToString("N0", nl)</div></div></div>
+        </div>
+
+        <div class="card-saas mt-4">
+            <h2 class="h4 fw-bold mb-3">Users en top-up</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead><tr><th>Email</th><th>Credits</th><th>Aangemaakt</th><th>Top-up</th></tr></thead>
+                    <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.Email</td>
+                            <td>@user.Credits</td>
+                            <td>@user.CreatedUtc.ToLocalTime().ToString("g", nl)</td>
+                            <td>
+                                <form asp-action="TopUp" method="post" class="d-flex gap-2">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="userId" value="@user.Id" />
+                                    <input class="form-control form-control-sm" style="max-width:120px" type="number" name="amount" min="1" value="10" />
+                                    <button class="btn btn-sm btn-outline-secondary" type="submit">Toevoegen</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
